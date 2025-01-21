@@ -1,1 +1,29 @@
-<p>grid works!</p>
+<section>
+  <div class="mat-elevation-z8">
+
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter..."> 
+      <!-- codigo del search con su directiva matInput -->
+    </mat-form-field>
+
+    <table mat-table matSort [dataSource]="dataSource">
+        @for (column of displayedColumns(); track $index){ 
+          <!-- mapeo la informacion que llega en base a las columns -->
+            <ng-container [matColumnDef]="column">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th> 
+              <!-- renderizo la column -->
+              <td mat-cell *matCellDef="let element"> {{element[column]}} </td> 
+              <!-- renderizo el valor de la column -->
+            </ng-container>
+        }
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns();"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[8, 10, 20]"showFirstLastButtons> </mat-paginator> 
+    <!-- paginacion con sus valores de cantidad de datos -->
+  </div>
+</section>
+  
