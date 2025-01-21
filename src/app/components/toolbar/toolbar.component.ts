@@ -42,10 +42,10 @@ const MaterialModules = [
   styles: ``
 })
 export class ToolbarComponent {
-  onNewContactEvent = output<void>();
+  onNewCharacterEvent = output<void>();
   
   emitClick(): void{
-    this.onNewContactEvent.emit();
+    this.onNewCharacterEvent.emit();
   }
 
 }

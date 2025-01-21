@@ -1,2 +1,8 @@
-<app-toolbar/>
-<router-outlet/>
+<section>
+    <mat-card>
+        <mat-card-content>
+            <app-toolbar (onNewCharacterEvent)="onClickNewCharacter()"/>
+            <router-outlet/>
+        </mat-card-content>
+    </mat-card>
+</section>
