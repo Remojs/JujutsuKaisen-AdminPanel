@@ -1,11 +1,7 @@
 <section>
   <div class="mat-elevation-z8">
 
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter..."> 
-      <!-- codigo del search con su directiva matInput -->
-    </mat-form-field>
+    <app-filter [label]="'Search...'" [placeholder]="'Type your search...'" [(filter)]="valueToFilter"/>
 
     <table mat-table matSort [dataSource]="dataSource">
         @for (column of displayedColumns(); track $index){ 
@@ -13,8 +9,23 @@
             <ng-container [matColumnDef]="column">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th> 
               <!-- renderizo la column -->
-              <td mat-cell *matCellDef="let element"> {{element[column]}} </td> 
-              <!-- renderizo el valor de la column -->
+              <td mat-cell *matCellDef="let element">
+                {{element[column]}} 
+                <!-- renderizo el valor de la column -->
+
+                @if(column === 'action'){
+                  <button mat-icon-button color="primary">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <!-- renderizo el boton de edit -->
+                   
+                  <button mat-icon-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  <!-- renderizo el boton de delete -->
+                }
+              </td> 
+
             </ng-container>
         }
 

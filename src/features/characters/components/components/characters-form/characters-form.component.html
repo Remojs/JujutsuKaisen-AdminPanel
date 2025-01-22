@@ -1,0 +1,69 @@
+<form [formGroup]="characterForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" />
+  </div>
+
+  <div>
+    <label for="alias">Alias</label>
+    <input id="alias" formControlName="alias" />
+  </div>
+
+  <div>
+    <label for="species">Species</label>
+    <input id="species" formControlName="species" />
+  </div>
+
+  <div>
+    <label for="birthday">Birthday</label>
+    <input id="birthday" formControlName="birthday" />
+  </div>
+
+  <div>
+    <label for="age">Age</label>
+    <input id="age" formControlName="age" type="number" />
+  </div>
+
+  <div>
+    <label for="height">Height</label>
+    <input id="height" formControlName="height" />
+  </div>
+  
+  <div>
+    <label for="weight">Weight</label>
+    <input id="weight" formControlName="weight" />
+  </div>
+
+  <div>
+    <label for="gender">Gender</label>
+    <input id="gender" formControlName="gender" />
+  </div>
+
+  <div>
+    <label for="affiliation_id">Affiliation</label>
+    <input id="affiliation_id" formControlName="affiliation_id" />
+  </div>
+
+  <div>
+    <label for="animeDebut">Anime Debut</label>
+    <input id="animeDebut" formControlName="animeDebut" />
+  </div>
+
+  <div>
+    <label for="mangaDebut">Manga Debut</label>
+    <input id="mangaDebut" formControlName="mangaDebut" />
+  </div>
+
+  <div>
+    <label for="grade_id">Grade</label>
+    <input id="grade_id" formControlName="grade_id" />
+  </div>
+
+  <div>
+    <label for="occupation_id">Occupation</label>
+    <input id="occupation_id" formControlName="occupation_id" />
+  </div>
+
+
+  <button type="submit" [disabled]="!characterForm.valid">Submit</button>
+</form>

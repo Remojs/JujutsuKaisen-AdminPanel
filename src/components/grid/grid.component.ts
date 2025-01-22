@@ -1,11 +1,12 @@
-import { Component, input, OnInit, viewChild } from '@angular/core';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { Component, effect, input, OnInit, signal, viewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatInput} from '@angular/material/input'
+import { FilterComponent } from './filter/filter.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
-const MaterialModules=[MatTableModule, MatSortModule, MatPaginatorModule, MatLabel, MatFormField, MatInput]
+const MaterialModules=[MatTableModule, MatSortModule, MatPaginatorModule, MatButtonModule, MatIconModule]
 
 export interface PeriodicElement {
   name: string;
@@ -39,7 +40,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 @Component({
   selector: 'app-grid',
-  imports: [MaterialModules],
+  imports: [FilterComponent, MaterialModules],
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.scss'
 })
@@ -51,9 +52,20 @@ export class GridComponent<T> implements OnInit {
 
   dataSource = new MatTableDataSource<T>();
 
-  private readonly sort = viewChild.required<MatSort>(MatSort);
+  valueToFilter = signal('')
 
+  private readonly sort = viewChild.required<MatSort>(MatSort);
   private readonly paginator = viewChild.required<MatPaginator>(MatPaginator);
+
+  constructor() {
+    effect(()=>{
+      if(this.valueToFilter()){
+        this.dataSource.filter = this.valueToFilter();
+      } else {
+        this.dataSource.filter = '';
+      }
+    }, {allowSignalWrites: true})
+  }
 
   ngOnInit(): void {
     this.dataSource.data = this.data();

@@ -11,3 +11,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .normalize{
     background-color: #fff;
 }
+
+.mat-mdc-form-field{
+    font-size: 1rem;
+    width: 100%;
+    margin-top: .5rem;
+    margin-bottom:-1.5rem;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;   /* Ocupa todo el ancho de la pantalla */
+  }
