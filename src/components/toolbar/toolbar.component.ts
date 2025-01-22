@@ -2,6 +2,7 @@ import { Component, output } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 const MaterialModules = [
   MatToolbarModule, MatIconModule, MatButtonModule
@@ -9,7 +10,7 @@ const MaterialModules = [
 
 @Component({
   selector: 'app-toolbar',
-  imports: [MaterialModules],
+  imports: [MaterialModules, RouterModule,],
   template: `
     <mat-toolbar color="primary">
       <a mat-button routerLink="/">
@@ -33,7 +34,7 @@ const MaterialModules = [
         <span>Grades</span>
       </a>
       <span class='spacer'></span>
-      <a mat-button (click)="emitClick()">
+      <a mat-button routerLink="/characters/create">
         <mat-icon>add_box</mat-icon>
         <span>Add</span>
       </a>
@@ -42,10 +43,5 @@ const MaterialModules = [
   styles: ``
 })
 export class ToolbarComponent {
-  onNewCharacterEvent = output<void>();
-  
-  emitClick(): void{
-    this.onNewCharacterEvent.emit();
-  }
 
 }

@@ -7,7 +7,7 @@ const charactersRoute: Routes = [
     },
     {
         path: 'create',
-        loadComponent: () => import('./components/components/characters-form/characters-form.component').then(m => m.CharacterFormComponent),
+        loadComponent: () => import('./components/characters-form/characters-form.component').then(m => m.CharacterFormComponent),
     }
 ];
 
