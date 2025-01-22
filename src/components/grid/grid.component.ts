@@ -5,6 +5,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { FilterComponent } from './filter/filter.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 const MaterialModules=[MatTableModule, MatSortModule, MatPaginatorModule, MatButtonModule, MatIconModule]
 
@@ -27,7 +28,7 @@ export class GridComponent<T> implements OnInit {
   private readonly sort = viewChild.required<MatSort>(MatSort);
   private readonly paginator = viewChild.required<MatPaginator>(MatPaginator);
 
-  constructor() {
+  constructor(private router: Router) {
     effect(()=>{
       if(this.valueToFilter()){
         this.dataSource.filter = this.valueToFilter();
@@ -36,6 +37,7 @@ export class GridComponent<T> implements OnInit {
       }
     }, {allowSignalWrites: true})
   }
+  
 
   ngOnInit(): void {
     this.dataSource.data = this.data();
@@ -52,5 +54,13 @@ export class GridComponent<T> implements OnInit {
 
   onDelete(id: number): void {
     this.deleteCharacter.emit(id); // Emitir el id del personaje a eliminar
+  }
+
+  onView(id: number): void {
+    this.router.navigate(['/characters', id]); // Navegar al detalle del personaje
+  }
+
+  onEdit(id: number): void {
+    this.router.navigate(['/characters/edit', id]); // Navegar al detalle del personaje
   }
 }

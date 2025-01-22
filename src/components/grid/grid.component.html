@@ -14,7 +14,11 @@
                 <!-- renderizo el valor de la column -->
 
                 @if(column === 'action'){
-                  <button mat-icon-button color="primary">
+                  <button mat-icon-button color="primary" (click)="onView(element.id)">
+                    <mat-icon>menu_open</mat-icon>
+                  </button>
+                  <!-- renderizo el boton de view -->
+                  <button mat-icon-button color="primary" (click)="onEdit(element.id)">
                     <mat-icon>edit</mat-icon>
                   </button>
                   <!-- renderizo el boton de edit -->
